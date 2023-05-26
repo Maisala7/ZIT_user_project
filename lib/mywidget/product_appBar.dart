@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart'as Badge;
 import 'package:flutter/material.dart';
 import 'package:flutter_application_7/app_screens/cart_page.dart';
 import 'package:flutter_application_7/mywidget/constant.dart';
@@ -29,7 +29,7 @@ class productAppbar extends StatelessWidget{
         
     ),
     Spacer(),
-    Badge(
+    Badge.Badge(
       badgeColor: Colors.red,
       padding: EdgeInsets.all(7),
       badgeContent: Text("3",
@@ -51,7 +51,7 @@ class productAppbar extends StatelessWidget{
     Row(
       children: [
        
-    Badge(
+    Badge.Badge(
       badgeColor: Colors.red,
       padding: EdgeInsets.all(7),
       badgeContent: Text("3",

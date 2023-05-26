@@ -8,7 +8,7 @@ class orderImagewidget extends StatelessWidget{
     
      child: Padding(
        padding: const EdgeInsets.all(5.0),
-       child: Image.asset("$image",
+       child: Image.network("http://vzzoz.pythonanywhere.com$image",
        width: 150,
        height: 150,
        

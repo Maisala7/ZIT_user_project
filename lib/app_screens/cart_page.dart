@@ -1,50 +1,58 @@
 import "package:flutter/material.dart";
+import 'package:flutter_application_7/api/apiRequests.dart';
 import 'package:flutter_application_7/mywidget/cart_navigatorbar.dart';
 import 'package:flutter_application_7/mywidget/constant.dart';
 
 import '../mywidget/cart_appBar.dart';
 import '../mywidget/cart_itemWidget.dart';
-class cartpage extends StatelessWidget{
-   cartpage(this.language);
 
+class cartpage extends StatelessWidget {
+  cartpage(this.language);
   final int language;
+  DatabaseHelper databaseHelper = DatabaseHelper();
+
   @override
   Widget build(BuildContext context) {
-  return Scaffold(
-   bottomNavigationBar:cartnavigatorbar(language, total: "23000"),
-    
-    body: ListView(
-      children: [
-       cartappBar(language),
-        Container(
-          height: 700,
-          padding: EdgeInsets.only(top: 15),
-          decoration: BoxDecoration(
-            color: Color(0xFFEDECF2),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(35),
-              topRight: Radius.circular(35)
+    return Scaffold(
+      bottomNavigationBar: cartnavigatorbar(language,),
+      body: ListView(
+        children: [
+          cartappBar(language),
+          Container(
+              height: 700,
+              padding: EdgeInsets.only(top: 15),
+              decoration: BoxDecoration(
+                color: Color(0xFFEDECF2),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(35),
+                    topRight: Radius.circular(35)),
               ),
-              
-          ),
-          child: Column(
-            children: [
-              cartItemWidget(image: 'images/im.jpj.jpg', price: '3000', title: 'kkkk',),
-              cartItemWidget(image: 'images/im.jpj.jpg', price: '3000', title: 'kkllk',),
-              cartItemWidget(image: 'images/im.jpj.jpg', price: '3000', title: 'kkllk',),
-              
-               
-             
-
-            ],
-          ),
-          
-          
-        ),
-
-      ],
-    ),
-  );
+              child: StreamBuilder(
+                stream: databaseHelper.getCartProducts().asStream(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: snapshot.data!.length,
+                      primary: false,
+                      itemBuilder: (context, index) {
+                        print(snapshot.data);
+                        return cartItemWidget(
+                            id: snapshot.data![index]['id'],
+                            image: snapshot.data![index]['Image'],
+                            price: snapshot.data![index]['Price'],
+                            title: ''
+                            // snapshot.data![index]['Name'],
+                            );
+                      },
+                    );
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
+                },
+              )),
+        ],
+      ),
+    );
   }
-
 }

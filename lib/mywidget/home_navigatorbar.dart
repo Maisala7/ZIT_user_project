@@ -5,28 +5,31 @@ import 'package:flutter_application_7/app_screens/cart_page.dart';
 import 'package:flutter_application_7/app_screens/home_page.dart';
 import 'package:flutter_application_7/app_screens/orderState_page.dart';
 
-
 import 'constant.dart';
 
-class homenavpage extends StatefulWidget{
+class homenavpage extends StatefulWidget {
   final int language;
+  final String storeName;
+  final String storeID;
 
-  homenavpage(this.language);
-  
+  homenavpage(this.language, {required this.storeName, required this.storeID});
+
   State<StatefulWidget> createState() {
     // ignore: no_logic_in_create_state
-    return homenavpageState(language);
+    return homenavpageState(language, storeName: storeName, storeID: storeID);
+  }
 }
-}
-class homenavpageState extends State<homenavpage>{
-    final int language;
+
+class homenavpageState extends State<homenavpage> {
+  final int language;
 //  int index=0;
-  
- // int selectedIndex=0;
+  final String storeName;
+  final String storeID;
+  // int selectedIndex=0;
 
-  homenavpageState(this.language);
+  homenavpageState(this.language,
+      {required this.storeName, required this.storeID});
 
-  
   @override
   Widget build(BuildContext context) {
     // final Pages=[
@@ -34,58 +37,73 @@ class homenavpageState extends State<homenavpage>{
     //   cartpage(language),
     //   orderStatepage(language)
 
-  // ];
+    // ];
 
-   return BottomAppBar(
-     child: Container(
+    return BottomAppBar(
+        child: Container(
       height: 70,
-      
       padding: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
-        
-        color:iconcolor,
-        borderRadius: BorderRadius.circular(10),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.5),
-          spreadRadius: 1,
-          blurRadius: 5,
-          offset: const Offset(0,3)
-        )
-      ]),
+          color: iconcolor,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: const Offset(0, 3))
+          ]),
       child: Row(
-       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
-              onTap: () => Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return homepage(language);})),
-              child: const Icon(Icons.home, size: 30,color: Colors.white,)),
+                onTap: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return homepage(
+                        storeID: storeID,
+                        language,
+                        storeName: storeName,
+                      );
+                    })),
+                child: const Icon(
+                  Icons.home,
+                  size: 30,
+                  color: Colors.white,
+                )),
           ),
-            Padding(
-              padding: const EdgeInsets.only(left: 120),
-              child: GestureDetector(
+          Padding(
+            padding: const EdgeInsets.only(left: 120),
+            child: GestureDetector(
                 onTap: () => Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return cartpage(language);})),
-                child: const Icon(CupertinoIcons.cart, size: 30,color: Colors.white,)),
-            ),
-             Padding(
-               padding: const EdgeInsets.only(left: 120),
-               child: GestureDetector(
+                        MaterialPageRoute(builder: (context) {
+                      return cartpage(language);
+                    })),
+                child: const Icon(
+                  CupertinoIcons.cart,
+                  size: 30,
+                  color: Colors.white,
+                )),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 120),
+            child: GestureDetector(
                 onTap: () => Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return orderStatepage(language);})),
-                child: const Icon(Icons.list_sharp, size: 30,color: Colors.white,)),
-             ),
+                        MaterialPageRoute(builder: (context) {
+                      return orderStatepage(language);
+                    })),
+                child: const Icon(
+                  Icons.list_sharp,
+                  size: 30,
+                  color: Colors.white,
+                )),
+          ),
         ],
       ),
-      ));
-     
-  
-}}
+    ));
+  }
+}
 
 
 

@@ -3,13 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_7/api/apiRequests.dart';
 import 'package:flutter_application_7/mywidget/home_navigatorbar.dart';
-
 import '../mywidget/Items_widget.dart';
 import '../mywidget/categorise_widget.dart';
 import '../mywidget/constant.dart';
 import '../mywidget/homeappBar.dart';
 import 'cart_page.dart';
 import 'orderState_page.dart';
+
 
 class homepage extends StatefulWidget {
   homepage(
@@ -27,11 +27,16 @@ class homepage extends StatefulWidget {
     return homepageState(language, storeName: storeName, storeID: storeID);
   }
 }
-
 class homepageState extends State<homepage> {
+  final items = const[
+   Icon(Icons.home ,size: 30,color: Colors.white,),
+   Icon(Icons.shopping_bag,size: 30,color: Colors.white,),
+   Icon(Icons.list,size: 30,color: Colors.white,),];
+   int index=1;
   final int language;
   final String storeName;
   final String storeID;
+  
 
   DatabaseHelper databaseHelper = DatabaseHelper();
   String searchQuery = '';
@@ -42,17 +47,14 @@ class homepageState extends State<homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: homenavpage(
-        storeID: storeID,
-        language,
-        storeName: storeName,
-      ),
+     bottomNavigationBar:FluidNavBarDemo(language),
       body: ListView(
         children: [
           homeAppbar(
             language,
             storeName: storeName,
           ),
+          
           Container(
             height: MediaQuery.of(context).size.height,
             padding: const EdgeInsets.only(top: 15),
@@ -63,7 +65,7 @@ class homepageState extends State<homepage> {
                 topRight: Radius.circular(35),
               ),
             ),
-            child: Column(
+            child: ListView(
               children: [
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 15),
@@ -222,4 +224,8 @@ class homepageState extends State<homepage> {
       ),
     );
   }
-}
+  
+} 
+  
+
+ 

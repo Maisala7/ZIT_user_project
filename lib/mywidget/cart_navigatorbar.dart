@@ -4,14 +4,23 @@ import 'package:flutter_application_7/api/apiRequests.dart';
 import 'package:flutter_application_7/app_screens/order_page.dart';
 import 'package:flutter_application_7/mywidget/constant.dart';
 
-class cartnavigatorbar extends StatelessWidget {
-  cartnavigatorbar(this.language, {super.key});
+class cartnavigatorbar extends StatefulWidget{
+   final int language;
 
-  final int language;
+  cartnavigatorbar(this.language, {super.key});
+  
+  @override
+  State<StatefulWidget> createState() =>cartnavigatorbarState(language);
+  }
+
+  class cartnavigatorbarState extends State<cartnavigatorbar> {
+   final int language;
+  
   DatabaseHelper databaseHelper = DatabaseHelper();
+
+  cartnavigatorbarState(this.language);
   @override
   Widget build(BuildContext context) {
-    DatabaseHelper databaseHelper = DatabaseHelper();
     return BottomAppBar(
       child: Container(
         height: 70,
@@ -69,4 +78,6 @@ class cartnavigatorbar extends StatelessWidget {
       ),
     );
   }
-}
+  }
+
+  

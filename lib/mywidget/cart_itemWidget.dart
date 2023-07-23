@@ -36,9 +36,9 @@ class cartItemWidget extends StatelessWidget {
               ),
               Container(
                 height: 70,
-                width: 70,
+                width: 75,
                 margin: EdgeInsets.only(right: 15),
-                child: Image.network("https://vzzoz.pythonanywhere.com/$image"),
+                child: Image.network("https://vzzoz.pythonanywhere.com/$image",),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
@@ -50,14 +50,14 @@ class cartItemWidget extends StatelessWidget {
                       "$title",
                       textAlign: TextAlign.justify,
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 15,
                           color: iconcolor,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
                       "$price",
                       style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           color: iconcolor,
                           fontWeight: FontWeight.bold),
                     ),
@@ -81,7 +81,7 @@ class cartItemWidget extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        padding: EdgeInsets.symmetric(horizontal: 5),
                         child: SizedBox(
                             child: MainScreen(
                           productID: id,

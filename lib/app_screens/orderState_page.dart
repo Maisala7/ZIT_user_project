@@ -20,7 +20,7 @@ class orderStatepage extends StatelessWidget {
         decoration: BoxDecoration(
           color: Color(0xFFEDECF2),
         ),
-        child: Column(
+        child: ListView(
           children: [
             StreamBuilder(
               stream: databaseHelper.getMyOrders().asStream(),

@@ -41,8 +41,8 @@ class cartpage extends StatelessWidget {
                             id: snapshot.data![index]['id'],
                             image: snapshot.data![index]['Image'],
                             price: snapshot.data![index]['Price'],
-                            title: ''
-                            // snapshot.data![index]['Name'],
+                            title: snapshot.data![index]['Name'],
+                          
                             );
                       },
                     );

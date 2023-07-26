@@ -17,10 +17,13 @@ class homeAppbar extends StatelessWidget {
       child: language == 1
           ? Row(
               children: [
-                Icon(
-                  Icons.arrow_back,
-                  size: 20,
-                  color: iconcolor,
+                InkWell(
+                  onTap: () =>  Navigator.pop(context),
+                  child: Icon(
+                    Icons.arrow_back,
+                    size: 20,
+                    color: iconcolor,
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 20),
@@ -56,10 +59,15 @@ class homeAppbar extends StatelessWidget {
             )
           : Row(
               children: [
-                Icon(
-                  Icons.arrow_back,
-                  size: 20,
-                  color: iconcolor,
+                InkWell(
+                  onTap: () {
+                     Navigator.pop(context);
+                  },
+                  child: Icon(
+                    Icons.arrow_back,
+                    size: 20,
+                    color: iconcolor,
+                  ),
                 ),
                 Badge.Badge(
                   badgeColor: Colors.red,

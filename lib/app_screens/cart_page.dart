@@ -6,18 +6,28 @@ import 'package:flutter_application_7/mywidget/constant.dart';
 import '../mywidget/cart_appBar.dart';
 import '../mywidget/cart_itemWidget.dart';
 
-class cartpage extends StatelessWidget {
+class cartpage extends StatefulWidget {
   cartpage(this.language);
   final int language;
+
+  @override
+  State<cartpage> createState() => _cartpageState();
+}
+
+class _cartpageState extends State<cartpage> {
   DatabaseHelper databaseHelper = DatabaseHelper();
+
+  void rebuildCartNavigatorBar() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: cartnavigatorbar(language,),
+      bottomNavigationBar: cartnavigatorbar(widget.language,),
       body: ListView(
         children: [
-          cartappBar(language),
+          cartappBar(widget.language),
           Container(
               height: 700,
               padding: EdgeInsets.only(top: 15),
@@ -41,8 +51,9 @@ class cartpage extends StatelessWidget {
                             id: snapshot.data![index]['id'],
                             image: snapshot.data![index]['Image'],
                             price: snapshot.data![index]['Price'],
-                            title: ''
-                            // snapshot.data![index]['Name'],
+                            title: snapshot.data![index]['Name'],
+                                                  onCounterChanged: rebuildCartNavigatorBar,
+
                             );
                       },
                     );

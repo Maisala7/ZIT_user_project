@@ -4,22 +4,33 @@ import 'package:flutter_application_7/app_screens/Register_page.dart';
 import 'package:flutter_application_7/app_screens/store_page.dart';
 import 'package:flutter_application_7/mywidget/constant.dart';
 
-class loginPage extends StatelessWidget {
+class login_page extends StatefulWidget {
+    final int language;
+
+  login_page(this.language, {super.key});
+  @override
+  State<StatefulWidget> createState() {
+    return login_pageState(language);
+  }
+}
+
+class login_pageState extends State<login_page> {
   final int language;
+  final _log_informkey = GlobalKey<FormState>();
+    final loginpasswordController = TextEditingController();
+    final nameController = TextEditingController();
+    bool passToggle=true;
+  DatabaseHelper databaseHelper = DatabaseHelper();
 
-  loginPage(this.language, {super.key});
-
+  login_pageState(this.language);
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<FormState> _log_informkey = GlobalKey<FormState>();
-
-    final nameController = TextEditingController();
-    final loginpasswordController = TextEditingController();
-    final usernameController = TextEditingController();
-    final passwordController = TextEditingController();
-
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    
     return Scaffold(
-      body: Container(
+    
+        body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -48,8 +59,7 @@ class loginPage extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(60),
                         topRight: Radius.circular(60),
-                        bottomLeft: Radius.circular(60),
-                        bottomRight: Radius.circular(60))),
+                        )),
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: EdgeInsets.all(30),
@@ -64,6 +74,7 @@ class loginPage extends StatelessWidget {
                             children: <Widget>[
                               TextFormField(
                                 controller: nameController,
+                                textDirection: language==1?TextDirection.ltr:TextDirection.rtl,
                                 decoration: InputDecoration(
                                   hintText: language == 1
                                       ? "username"
@@ -87,7 +98,7 @@ class loginPage extends StatelessWidget {
                                     return language == 1
                                         ? 'This field is required'
                                         : "هذا الحقل مطلوب";
-                                  } else if (value != usernameController.text) {
+                                  } else if (value != nameController.text) {
                                     return language == 1
                                         ? 'user name is not correct'
                                         : " اسم المستخدم غير صحيح";
@@ -96,7 +107,8 @@ class loginPage extends StatelessWidget {
                                 },
                               ),
                               TextFormField(
-                                obscureText: true,
+                                obscureText: passToggle,
+                                textDirection: language==1?TextDirection.ltr:TextDirection.rtl,
                                 controller: loginpasswordController,
                                 decoration: InputDecoration(
                                   hintText: language == 1
@@ -111,9 +123,17 @@ class loginPage extends StatelessWidget {
                                       ? TextDirection.ltr
                                       : TextDirection.rtl,
                                   fillColor: Colors.white,
-                                  suffixIcon: const Icon(
-                                    Icons.password,
-                                    color: iconcolor,
+                                  suffixIcon:  InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                passToggle=!passToggle;
+                              }); 
+                                    },
+                                    child: Icon(passToggle?
+                              Icons.visibility:Icons.visibility_off,
+                                     
+                                      color: iconcolor,
+                                    ),
                                   ),
                                 ),
                                 validator: (value) {
@@ -121,7 +141,7 @@ class loginPage extends StatelessWidget {
                                     return language == 1
                                         ? 'This field is required'
                                         : "هذا الحقل مطلوب";
-                                  } else if (value != passwordController.text) {
+                                  } else if (value != loginpasswordController.text) {
                                     return language == 1
                                         ? ' password is not correct'
                                         : " كلمة السر  غير صحيحه";
@@ -155,6 +175,7 @@ class loginPage extends StatelessWidget {
                         GestureDetector(
                           onTap: () async {
                             DatabaseHelper databaseHelper = DatabaseHelper();
+                            // if (_log_informkey.currentState!.validate())
                             await databaseHelper.loginData(
                                 username: nameController.text,
                                 password: loginpasswordController.text);

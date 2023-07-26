@@ -241,6 +241,7 @@ class DatabaseHelper {
       Map<String, dynamic> product = json.decode(productJson);
       double productPrice = double.parse(product['Price']);
       int quantity = product['Quantity'];
+       
       total += productPrice * quantity;
     }
 

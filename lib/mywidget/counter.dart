@@ -4,15 +4,20 @@ import 'package:flutter_application_7/api/apiRequests.dart';
 import 'package:flutter_application_7/mywidget/constant.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key, required this.productID}) : super(key: key);
-  final String productID;
-  @override
-  State<MainScreen> createState() => _MainScreenState(productID: productID);
+MainScreen({Key? key, required this.productID, this.onCounterChanged})
+      : super(key: key);  final String productID;
+    final VoidCallback? onCounterChanged;
+
+   @override
+  State<MainScreen> createState() =>
+      _MainScreenState(productID: productID, onCounterChanged: onCounterChanged);
 }
 
 class _MainScreenState extends State<MainScreen> {
-  _MainScreenState({required this.productID});
+  _MainScreenState({required this.productID,required this.onCounterChanged});
   final String productID;
+    final VoidCallback? onCounterChanged;
+
 
   DatabaseHelper databaseHelper = DatabaseHelper();
   @override
@@ -34,7 +39,7 @@ class _MainScreenState extends State<MainScreen> {
                   Container(
                     decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(35),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
@@ -55,6 +60,7 @@ class _MainScreenState extends State<MainScreen> {
                             quantity++;
                             databaseHelper.updateProductQuantity(
                                 productID: productID, newQuantity: quantity);
+                                onCounterChanged?.call();
                           });
                         }
                       },
@@ -93,6 +99,7 @@ class _MainScreenState extends State<MainScreen> {
                             quantity--;
                             databaseHelper.updateProductQuantity(
                                 productID: productID, newQuantity: quantity);
+                                onCounterChanged?.call();
                           });
                         }
                       },

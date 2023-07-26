@@ -82,19 +82,22 @@ class productpage extends StatelessWidget {
                               print(
                                 snapshot.data![index]['id'].toString(),
                               );
-                              return productWidget(
-                                  id: snapshot.data![index]['id'].toString(),
-                                  productDescription: '',
-                                  image:
-                                      snapshot.data![index]['Image'].toString(),
-                                  producttitle:
-                                      snapshot.data![index]['Name'].toString(),
-                                  productCategory: snapshot.data![index]
-                                          ['Description']
-                                      .toString(),
-                                  price:
-                                      snapshot.data![index]['Price'].toString(),
-                                  language);
+                              return Padding(
+                                padding: const EdgeInsets.only(top:10.0),
+                                child: productWidget(
+                                    id: snapshot.data![index]['id'].toString(),
+                                    productDescription: '',
+                                    image:
+                                        snapshot.data![index]['Image'].toString(),
+                                    producttitle:
+                                        snapshot.data![index]['Name'].toString(),
+                                    productCategory: snapshot.data![index]
+                                            ['Description']
+                                        .toString(),
+                                    price:
+                                        snapshot.data![index]['Price'].toString(),
+                                    language),
+                              );
                             } else {
                               return const CircularProgressIndicator();
                             }

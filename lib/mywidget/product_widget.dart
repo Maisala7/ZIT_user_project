@@ -23,8 +23,10 @@ class productWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(left: 15, top: 10, right: 15),
-        margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+      height: 100,
+     // width: 80,
+        padding: EdgeInsets.only(left: 15, top: 12, right: 15),
+        margin: EdgeInsets.symmetric(vertical:1, horizontal: 20),
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(20)),
         child: Column(
@@ -45,8 +47,8 @@ class productWidget extends StatelessWidget {
                 margin: EdgeInsets.all(10),
                 child: Image.network(
                   "https://vzzoz.pythonanywhere.com/$image",
-                  height: 150,
-                  width: 150,
+                  height: 75,
+                  width: double.infinity,
                 ),
               ),
             ),

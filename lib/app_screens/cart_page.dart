@@ -52,7 +52,9 @@ class _cartpageState extends State<cartpage> {
                             image: snapshot.data![index]['Image'],
                             price: snapshot.data![index]['Price'],
                             title: snapshot.data![index]['Name'],
+r
                                                   onCounterChanged: rebuildCartNavigatorBar,
+
 
                             );
                       },

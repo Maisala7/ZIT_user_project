@@ -8,13 +8,18 @@ class cartItemWidget extends StatelessWidget {
   final String title;
   final String price;
   final String id;
+    final VoidCallback? onCounterChanged;
+
   DatabaseHelper databaseHelper = DatabaseHelper();
   cartItemWidget(
       {super.key,
       required this.image,
       required this.title,
       required this.price,
-      required this.id});
+      required this.id,
+          this.onCounterChanged,
+
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +90,8 @@ class cartItemWidget extends StatelessWidget {
                         child: SizedBox(
                             child: MainScreen(
                           productID: id,
+                                    onCounterChanged: onCounterChanged,
+
                         )),
                       ),
                     ]),

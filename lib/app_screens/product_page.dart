@@ -99,11 +99,15 @@ class productpage extends StatelessWidget {
                                     language),
                               );
                             } else {
-                              return const CircularProgressIndicator();
+                              return Center(child: const CircularProgressIndicator(
+                                color: iconcolor,
+                              ));
                             }
                           });
                     } else {
-                      return const CircularProgressIndicator();
+                      return const CircularProgressIndicator(
+                        color: iconcolor,
+                      );
                     }
                   },
                 )

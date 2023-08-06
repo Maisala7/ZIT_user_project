@@ -46,7 +46,14 @@ class homepageState extends State<homepage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  StreamBuilder<List<dynamic>>(
+      //stream: _storeStreamController.stream,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator(
+            color: iconcolor,
+          );
+        } else return Scaffold(
      bottomNavigationBar:FluidNavBarDemo(language),
       body: ListView(
         children: [
@@ -59,7 +66,7 @@ class homepageState extends State<homepage> {
             height: MediaQuery.of(context).size.height,
             padding: const EdgeInsets.only(top: 15),
             decoration: BoxDecoration(
-              color: Color(0xFFEDECF2),
+              color: const Color(0xFFEDECF2),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(35),
                 topRight: Radius.circular(35),
@@ -150,7 +157,9 @@ class homepageState extends State<homepage> {
                     } else if (snapshot.hasError) {
                       return Text('Error: ${snapshot.error}');
                     } else {
-                      return CircularProgressIndicator();
+                      return Center(child: CircularProgressIndicator(
+                        color: iconcolor,
+                      ));
                     }
                   },
                 ),
@@ -213,7 +222,9 @@ class homepageState extends State<homepage> {
                         },
                       );
                     } else {
-                      return CircularProgressIndicator();
+                      return Center(child: CircularProgressIndicator(
+                        color: iconcolor,
+                      ));
                     }
                   },
                 ),
@@ -224,8 +235,8 @@ class homepageState extends State<homepage> {
       ),
     );
   }
-  
+    );
 } 
   
-
+  }
  

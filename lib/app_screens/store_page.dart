@@ -92,6 +92,7 @@ class StorepageState extends State<Storepage> {
                 ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
+                  
                   child: ListView.builder(
                     itemCount: filteredStores.length,
                     shrinkWrap: true,

@@ -280,8 +280,17 @@ class registerPageState extends State<registerPage> {
                         ),
                         GestureDetector(
                           onTap: () async {
+                             showDialog(context: context, 
+                            builder: (context){
+                              return Center(
+                              child: CircularProgressIndicator(
+                                color: iconcolor,
+                              ),
+                            );}
+
+                              );  
                             DatabaseHelper databaseHelper = DatabaseHelper();
-                            // if (RegisterformKey.currentState!.validate())
+                             if (RegisterformKey.currentState!.validate()){
                             await databaseHelper.registerData(
                                 username: usernameController.text,
                                 password: passwordController.text,
@@ -292,7 +301,7 @@ class registerPageState extends State<registerPage> {
                                 MaterialPageRoute(builder: (context) {
                               return login_page(language);
                             }));
-                          },
+                           } },
                           child: Container(
                             height: 50,
                             margin: EdgeInsets.symmetric(horizontal: 50),

@@ -40,7 +40,9 @@ class orderStatepage extends StatelessWidget {
                     },
                   );
                 } else {
-                  return const CircularProgressIndicator();
+                  return Center(child: const CircularProgressIndicator(
+                    color: iconcolor,
+                  ));
                 }
               },
             ),

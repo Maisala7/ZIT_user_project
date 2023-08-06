@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_7/app_screens/detail_page.dart';
 import 'package:flutter_application_7/mywidget/constant.dart';
 
+import '../api/apiRequests.dart';
+
 class productWidget extends StatelessWidget {
   final String image;
   final String id;
@@ -10,6 +12,8 @@ class productWidget extends StatelessWidget {
   final String productDescription;
   final String price;
   final int language;
+  DatabaseHelper databaseHelper = DatabaseHelper();
+
 
   productWidget(this.language,
       {super.key,
@@ -18,15 +22,17 @@ class productWidget extends StatelessWidget {
       required this.producttitle,
       required this.productCategory,
       required this.productDescription,
-      required this.price});
+      required this.price,
+      });
+
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: MediaQuery.of(context).size.height,
      // width: 80,
-        padding: EdgeInsets.only(left: 15, top: 12, right: 15),
-        margin: EdgeInsets.symmetric(vertical:1, horizontal: 20),
+       // padding: EdgeInsets.only(left: 15, top: 12, right: 15),
+        margin: EdgeInsets.symmetric(vertical: 1, horizontal: 15),
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(20)),
         child: Column(
@@ -56,25 +62,27 @@ class productWidget extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 "$producttitle",
+                textAlign: TextAlign.justify,
                 style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 15,
                     color: iconcolor,
                     fontWeight: FontWeight.bold),
               ),
             ),
-            Container(
-              // padding: EdgeInsets.only(bottom: 8),
-              alignment: Alignment.center,
-              child: Text(
-                "$productCategory",
-                style: TextStyle(
-                    fontSize: 17,
-                    color: iconcolor,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
+            // Container(
+            //   // padding: EdgeInsets.only(bottom: 8),
+            //   alignment: Alignment.center,
+            //   child: Text(
+            //     "$productCategory",
+            //     style: TextStyle(
+            //         fontSize: 17,
+            //         color: iconcolor,
+            //         fontWeight: FontWeight.bold),
+            //   ),
+            // ),
             Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
+                padding:EdgeInsets.only(left: 10,top: 24),
+                // EdgeInsets.symmetric(vertical: 10),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -85,10 +93,26 @@ class productWidget extends StatelessWidget {
                             color: iconcolor,
                             fontWeight: FontWeight.bold),
                       ),
-                      Icon(
-                        Icons.shopping_cart_checkout,
-                        color: iconcolor,
-                      )
+                      IconButton(
+                  onPressed: () async {
+                          print('here');
+                          await databaseHelper.addToCart(
+                              id: id,
+                              name: producttitle,
+                              price: price,
+                              image: image,
+                              description: productDescription
+                              );
+                        },
+                  icon: Icon(
+                    Icons.shopping_cart_checkout,
+                    color: iconcolor,
+                  ),
+                ),
+                      // Icon(
+                      //   Icons.shopping_cart_checkout,
+                      //   color: iconcolor,
+                      // )
                     ]))
           ],
         ));

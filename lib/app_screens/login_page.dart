@@ -174,8 +174,19 @@ class login_pageState extends State<login_page> {
                         ),
                         GestureDetector(
                           onTap: () async {
+
+                            showDialog(context: context, 
+                            builder: (context){
+                              return Center(
+                              child: CircularProgressIndicator(
+                                color: iconcolor,
+                              ),
+                            );}
+
+                              );  
+                            
                             DatabaseHelper databaseHelper = DatabaseHelper();
-                            // if (_log_informkey.currentState!.validate())
+                             if (_log_informkey.currentState!.validate()){
                             await databaseHelper.loginData(
                                 username: nameController.text,
                                 password: loginpasswordController.text);
@@ -183,7 +194,7 @@ class login_pageState extends State<login_page> {
                                 MaterialPageRoute(builder: (context) {
                               return Storepage(language);
                             }));
-                          },
+                           } },
                           child: Container(
                             height: 50,
                             margin: EdgeInsets.symmetric(horizontal: 50),

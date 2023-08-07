@@ -7,14 +7,15 @@ import 'package:flutter_application_7/app_screens/login_page.dart';
 import 'package:flutter_application_7/app_screens/orderState_page.dart';
 import 'package:flutter_application_7/app_screens/product_page.dart';
 
+import '../app_screens/store_page.dart';
 import 'constant.dart';
 
 class FluidNavBarDemo extends StatefulWidget {
   final int language;
 
-
- FluidNavBarDemo(this.language,);
-  
+  FluidNavBarDemo(
+    this.language,
+  );
 
   @override
   // ignore: library_private_types_in_public_api, no_logic_in_create_state
@@ -22,19 +23,21 @@ class FluidNavBarDemo extends StatefulWidget {
 }
 
 class _FluidNavBarDemoState extends State<FluidNavBarDemo> {
-   final int language;
- 
+  final int language;
+
   // ignore: prefer_typing_uninitialized_variables
-  var _child ;
+  var _child;
 
   _FluidNavBarDemoState(this.language);
-  
-
 
   @override
   void initState() {
     super.initState();
-    _child = homepage(language,storeID: '', storeName: '',);
+    _child = homepage(
+      language,
+      storeID: '',
+      storeName: '',
+    );
   }
 
   Widget build(BuildContext context) {
@@ -60,11 +63,7 @@ class _FluidNavBarDemoState extends State<FluidNavBarDemo> {
             child: GestureDetector(
                 onTap: () => Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return homepage(
-                        storeID: "storeID",
-                        language,
-                        storeName: "storeName",
-                      );
+                      return Storepage(language);
                     })),
                 child: const Icon(
                   Icons.home,

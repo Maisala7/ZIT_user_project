@@ -19,6 +19,8 @@ class login_pageState extends State<login_page> {
   final _log_informkey = GlobalKey<FormState>();
     final loginpasswordController = TextEditingController();
     final nameController = TextEditingController();
+    final usernameController = TextEditingController();
+    final passwordController = TextEditingController();
     bool passToggle=true;
   DatabaseHelper databaseHelper = DatabaseHelper();
 
@@ -49,7 +51,9 @@ class login_pageState extends State<login_page> {
                       language == 1 ? Alignment.topLeft : Alignment.topRight,
                   child: Text(
                     language == 1 ? "Login" : "تسجيل الدخول",
-                    style: TextStyle(color: Colors.white, fontSize: 40),
+                    style: TextStyle(color: Colors.white, fontSize: 40,
+                    fontWeight: FontWeight.bold
+                    ),
                   )),
             ),
             Expanded(
@@ -77,7 +81,7 @@ class login_pageState extends State<login_page> {
                                 textDirection: language==1?TextDirection.ltr:TextDirection.rtl,
                                 decoration: InputDecoration(
                                   hintText: language == 1
-                                      ? "username"
+                                      ? "UserName"
                                       : " اسم المستخدم",
                                   hintStyle: const TextStyle(
                                       color: iconcolor,
@@ -98,7 +102,7 @@ class login_pageState extends State<login_page> {
                                     return language == 1
                                         ? 'This field is required'
                                         : "هذا الحقل مطلوب";
-                                  } else if (value != nameController.text) {
+                                  } else if (value != nameController.text &&nameController!=usernameController) {
                                     return language == 1
                                         ? 'user name is not correct'
                                         : " اسم المستخدم غير صحيح";
@@ -112,7 +116,7 @@ class login_pageState extends State<login_page> {
                                 controller: loginpasswordController,
                                 decoration: InputDecoration(
                                   hintText: language == 1
-                                      ? "password"
+                                      ? "Password"
                                       : "  كلمة السر",
                                   hintStyle: const TextStyle(
                                       color: iconcolor,
@@ -130,7 +134,7 @@ class login_pageState extends State<login_page> {
                               }); 
                                     },
                                     child: Icon(passToggle?
-                              Icons.visibility:Icons.visibility_off,
+                              Icons.visibility_off:Icons.visibility,
                                      
                                       color: iconcolor,
                                     ),
@@ -141,7 +145,7 @@ class login_pageState extends State<login_page> {
                                     return language == 1
                                         ? 'This field is required'
                                         : "هذا الحقل مطلوب";
-                                  } else if (value != loginpasswordController.text) {
+                                  } else if (value != loginpasswordController.text&&loginpasswordController!=passwordController) {
                                     return language == 1
                                         ? ' password is not correct'
                                         : " كلمة السر  غير صحيحه";

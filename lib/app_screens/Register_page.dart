@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_7/api/apiRequests.dart';
 import 'package:flutter_application_7/app_screens/login_page.dart';
@@ -36,18 +38,18 @@ class registerPageState extends State<registerPage> {
         body:
        Container(
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 colors: [iconcolor, Color.fromARGB(255, 153, 160, 239)])),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -57,14 +59,18 @@ class registerPageState extends State<registerPage> {
                           : Alignment.topRight,
                       child: Text(
                         language == 1 ? "Register" : "إنشاء حساب",
-                        style: TextStyle(color: Colors.white, fontSize: 40),
+                        style: const TextStyle(color: Colors.white,
+                         fontSize: 40,
+                         fontWeight: FontWeight.bold,
+                         
+                        ),
                       )),
                 ],
               ),
             ),
             Expanded(
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(60),
@@ -72,10 +78,10 @@ class registerPageState extends State<registerPage> {
                       )),
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: EdgeInsets.all(30),
+                    padding: const EdgeInsets.all(30),
                     child: Column(
                       children: <Widget>[
-                        SizedBox(
+                        const SizedBox(
                           height: 60,
                         ),
                         Form(
@@ -87,12 +93,12 @@ class registerPageState extends State<registerPage> {
                                 controller: usernameController,
                                 decoration: InputDecoration(
                                   hintText: language == 1
-                                      ? "username"
+                                      ? "UserName"
                                       : " اسم المستخدم",
                                   hintStyle: const TextStyle(
                                       color: iconcolor,
                                       fontWeight: FontWeight.bold),
-                                  focusedBorder: UnderlineInputBorder(
+                                  focusedBorder: const UnderlineInputBorder(
                                       borderSide: BorderSide(color: iconcolor)),
                                   hintTextDirection: language == 1
                                       ? TextDirection.ltr
@@ -118,11 +124,11 @@ class registerPageState extends State<registerPage> {
 
                                 decoration: InputDecoration(
                                   hintText:
-                                      language == 1 ? "phone" : "رقم الهاتف  ",
+                                      language == 1 ? "Phone" : "رقم الهاتف  ",
                                   hintStyle: const TextStyle(
                                       color: iconcolor,
                                       fontWeight: FontWeight.bold),
-                                  focusedBorder: UnderlineInputBorder(
+                                  focusedBorder: const UnderlineInputBorder(
                                       borderSide: BorderSide(color: iconcolor)),
                                   hintTextDirection: language == 1
                                       ? TextDirection.ltr
@@ -152,7 +158,7 @@ class registerPageState extends State<registerPage> {
                                   hintStyle: const TextStyle(
                                       color: iconcolor,
                                       fontWeight: FontWeight.bold),
-                                  focusedBorder: UnderlineInputBorder(
+                                  focusedBorder: const UnderlineInputBorder(
                                       borderSide: BorderSide(color: iconcolor)),
                                   hintTextDirection: language == 1
                                       ? TextDirection.ltr
@@ -179,11 +185,11 @@ class registerPageState extends State<registerPage> {
                                 obscureText: true,
                                 decoration: InputDecoration(
                                   hintText:
-                                      language == 1 ? "password" : "كلمة السر",
+                                      language == 1 ? "Password" : "كلمة السر",
                                   hintStyle: const TextStyle(
                                       color: iconcolor,
                                       fontWeight: FontWeight.bold),
-                                  focusedBorder: UnderlineInputBorder(
+                                  focusedBorder: const UnderlineInputBorder(
                                       borderSide: BorderSide(color: iconcolor)),
                                   hintTextDirection: language == 1
                                       ? TextDirection.ltr
@@ -197,7 +203,7 @@ class registerPageState extends State<registerPage> {
                                     },
                                     child:  Icon(
                                       passToggle?
-                              Icons.visibility:Icons.visibility_off,
+                              Icons.visibility_off:Icons.visibility,
                                       color: iconcolor,
                                     ),
                                   ),
@@ -218,12 +224,12 @@ class registerPageState extends State<registerPage> {
                                 obscureText: true,
                                 decoration: InputDecoration(
                                   hintText: language == 1
-                                      ? "confirm password"
+                                      ? "Confirm Password"
                                       : "  تاكيد كلمة السر ",
                                   hintStyle: const TextStyle(
                                       color: iconcolor,
                                       fontWeight: FontWeight.bold),
-                                  focusedBorder: UnderlineInputBorder(
+                                  focusedBorder: const UnderlineInputBorder(
                                       borderSide: BorderSide(color: iconcolor)),
                                   hintTextDirection: language == 1
                                       ? TextDirection.ltr
@@ -235,7 +241,7 @@ class registerPageState extends State<registerPage> {
                                      } );},
                                     child:  Icon(
                                      passToggle?
-                              Icons.visibility:Icons.visibility_off,
+                              Icons.visibility_off:Icons.visibility,
                                       color: iconcolor,
                                     ),
                                   ),
@@ -252,11 +258,11 @@ class registerPageState extends State<registerPage> {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         gender(language),
-                         SizedBox(
+                         const SizedBox(
                           height: 20,
                         ),
                         GestureDetector(
@@ -271,18 +277,18 @@ class registerPageState extends State<registerPage> {
                                   ? " Already have acount?log_in"
                                   : "لديك حساب؟تسجيل الدخول",
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Color.fromARGB(255, 78, 68, 68),
                                   fontSize: 20),
                             )),
-                        SizedBox(
+                        const SizedBox(
                           height: 40,
                         ),
                         GestureDetector(
                           onTap: () async {
                              showDialog(context: context, 
                             builder: (context){
-                              return Center(
+                              return const Center(
                               child: CircularProgressIndicator(
                                 color: iconcolor,
                               ),
@@ -304,21 +310,22 @@ class registerPageState extends State<registerPage> {
                            } },
                           child: Container(
                             height: 50,
-                            margin: EdgeInsets.symmetric(horizontal: 50),
+                            margin: const EdgeInsets.symmetric(horizontal: 50),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(50),
                                 color: iconcolor),
                             child: Center(
                               child: Text(
                                 language == 1 ? "Register" : "تسجيل",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white,
-                                    fontWeight: FontWeight.bold),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
                       ],
